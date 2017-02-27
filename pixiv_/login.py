@@ -3,6 +3,7 @@
 import requests
 import re
 
+
 head = {
     # 'Host': 'accounts.pixiv.net',
     # 'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -19,11 +20,9 @@ head = {
 
 }
 
+
 def get_cookies(pid, password, text):
     s = requests.session()
-
-
-
     shout_url = 'https://accounts.pixiv.net/login?return_to=http%3A%2F%2F\
     www.pixiv.net%2Franking.php%3Fmode%3Ddaily&source=pc&view_type=page'
     url1 = 'https://accounts.pixiv.net/api/login?lang=zh'
@@ -64,7 +63,6 @@ def loadcookie(text):
     f.close()
     print('load cookies is Success')
     return loadcookies
-
 
 
 def login(pixiv_id, password):
