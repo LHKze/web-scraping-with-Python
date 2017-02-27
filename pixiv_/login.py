@@ -39,8 +39,8 @@ def get_cookies(pid, password, text):
     postkey = items[0]
 
     data = ({
-        'pixiv_id': '',    #email
-        'password': '',    #password
+        'pixiv_id': str(pixiv_id),    #email
+        'password': str(password),    #password
         'captcha': '',
         'g_recaptcha_response': '',
         'post_key': str(postkey),
@@ -67,10 +67,10 @@ def loadcookie(text):
 
 
 
-def login():
+def login(pixiv_id, password):
     s = requests.session()
 
-    get_cookies(1, 1, 'cookie.txt')
+    get_cookies(pixiv_id, password, 'cookie.txt')
     cookies =loadcookie('cookie.txt')
     s.cookies = requests.utils.cookiejar_from_dict(cookies)
     s.headers = head
@@ -79,5 +79,5 @@ def login():
 
 
 if __name__ == '__main__':
-    response = login()
+    response = login(pixiv_id, password)
     print response.status_code
