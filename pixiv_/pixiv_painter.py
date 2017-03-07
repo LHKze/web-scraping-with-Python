@@ -13,21 +13,34 @@ class Pixiv_Painter(object):
 
     def get_pictures_id(self, url):
         id_ = []
+        t = 1
 
         html_source = downloader(url)
-        while True:
+        while t == 1:
             html_soup = BeautifulSoup(html_source, 'lxml')
             span = html_soup.find('span', class_='next')
-            next_page = span.a.get('href')
+            try:
+                next_page = span.a.get('href')
+            except:
+                t = 2
+            pattern = re.compile('(?<=data-id=")\S*(?=">)')
+            picture_id = re.findall(pattern, html_source)
+            id_.extend(picture_id)
+            time.sleep(2)
             if next_page is not None:
-                pattern = re.compile('(?<=data-id=")\S*(?=">)')
-                picture_id = re.findall(pattern, html_source)
-                id_.extend(picture_id)
-                time.sleep(2)
                 html_source = downloader(base_url+next_page)
             else:
                 break
-        return id_
+        print len(id_)
+
+
+if __name__ == '__main__':
+
+    pixiv = Pixiv_Painter(11246082)
+    pixiv.get_pictures_id(pixiv.painter_url)
+
+
+
 
 
 
