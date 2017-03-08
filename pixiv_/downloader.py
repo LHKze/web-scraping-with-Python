@@ -12,6 +12,7 @@ def downloader(url):
     cookies = loadcookie('cookie.txt')
     s.cookies = requests.utils.cookiejar_from_dict(cookies)
     s.headers = head
+    s.stream = True
     res = s.get(url)
     return res.text
 
