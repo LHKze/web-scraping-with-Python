@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import re
 from downloader import downloader
 from pixiv_painter import PixivPainter
-fromlogin import login
+from login import login
 
 url = 'http://www.pixiv.net/member_illust.php?mode=medium&illust_id='
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     
     response = login(pixiv_id, password) #这里换成正确的帐号和密码
     picture_crawler(11246082)
-    pixiv.get_pictures_id()
+    
 
 
 
